@@ -8,12 +8,14 @@
 <body>
     <!--Contact Form-->
 <?php
+set_include_path(get_include_path() . PATH_SEPARATOR . 'phpseclib');
+include('./phpseclib/Net/SSH2.php');
 // Check if user exists
 $server_ip = $_SERVER['HTTP_HOST']; 
 $user_exists = false;
 if (isset($_POST["username"])){
     $user = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-    $filename = "http://".$server_ip."/coralmeet/vpn_configs/".$user.".ovpn";
+    $filename = "http://".$server_ip."/coralmeet/current_profiles/".$user.".ovpn";
     try{
         @$myfile = fopen($filename, "r");
         @$user_exists = fread($myfile,1);
@@ -117,9 +119,23 @@ if (! empty($_POST["send"])) {
             $output = shell_exec('openvpn-installer');
         }
         $server_ip = $_SERVER['HTTP_HOST']; 
-        if (file_exists($server_ip."/corameet/vpn_configs/".$user.".ovpn"))  
+        if (!file_exists($server_ip."/root/current_profiles/".$user.".ovpn"))  
         {
-
+            $ssh = new Net_SSH2("45.79.121.176");
+            if (!$ssh->login('root', '#$$uteq$$#')) {
+                exit('Login Failed');
+            }
+            $file = "/root/current_profiles/".$user.'.ovpn';
+            $fileName = basename($file);
+            echo $fileName;
+            header("Content-disposition: attachment; filename=" . $fileName);
+            header("Content-type: " . mime_content_type($file));
+            $contents = file_get_contents($fileName);
+            $newFilePath = $user.'.ovpn';
+            file_put_contents($newFilePath, $contents);
+            // echo $ssh->exec('./openvpn-install-2.sh 1 '.$user);
+            // echo $ssh->exec('mv '.$user.'.ovpn current_profiles/'.$user.'.ovpn');
+            copy('http://45.79.121.176/root/current_profiles/'.$user.'.ovpn', $user.'.ovpn');
         }
     }
 ?>
