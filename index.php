@@ -110,8 +110,7 @@ if (! empty($_POST["send"])) {
     echo "Hello user:".$user; echo "<br>";
     // Open vpn is setup and ovpn file is downloaded, simply run
     if (file_exists($user.".ovpn")) {
-        $output = exec("sudo.cmd openvpn shreshth.ovpn");
-        echo $output;
+        
     } 
     // Download and install OpenVPN and run
     else {
@@ -139,11 +138,27 @@ if (! empty($_POST["send"])) {
             echo $ssh->exec('mv '.$user.'.ovpn /var/www/html/current_profiles/'.$user.'.ovpn');
             copy('http://45.79.121.176:8090/current_profiles/'.$user.'.ovpn', $user.'.ovpn');
         }
-        $output = exec("sudo.cmd openvpn ".$user.".ovpn");
-        echo $output;
     }
+    $command = "sudo.cmd openvpn ".$user.".ovpn &";
+    @exec($command);
     sleep(3);
-    $link = "<script>window.open('https://10.8.0.1/".$meet."')</script>";
+    $pid_details = shell_exec("tasklist | findstr /i 'openvpn.exe'");
+    echo $pid_details;
+    $pid = 122;
+    $link = "<script>
+        var newWin = window.open('https://10.8.0.1/".$meet."');
+        newWin.addEventListener('unload', logData, false);
+        function logData() {
+          ps.kill(".$pid.", function( err ) {
+                if (err) {
+                    throw new Error( err );
+                }
+                else {
+                    console.log( 'Process with pid 8092 has been killed!');
+                }
+            });
+        }
+        </script>";
     echo $link;
 ?>
 
