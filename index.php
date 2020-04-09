@@ -66,6 +66,16 @@ else {
                 </div>
             </div>
             <div>
+                <div>
+                    <label>meeting name: </label><span id="meetingName"
+                        class="info"></span>
+                </div>
+                <div>
+                    <input type="text" id="meetingname" name="meetingname"
+                        class="inputBox" />
+                </div>
+            </div>
+            <div>
                 <input type="submit" id="send" name="send" value=
 
 <?php
@@ -96,10 +106,12 @@ else {
 if (! empty($_POST["send"])) {
     $user = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $pass = filter_var($_POST["password"], FILTER_SANITIZE_EMAIL);
+    $meet = filter_var($_POST["meetingname"], FILTER_SANITIZE_EMAIL);
     echo "Hello user:".$user; echo "<br>";
     // Open vpn is setup and ovpn file is downloaded, simply run
     if (file_exists($user.".ovpn")) {
-        exec("openvpn ".$user.".ovpn");
+        $output = exec("sudo.cmd openvpn shreshth.ovpn");
+        echo $output;
     } 
     // Download and install OpenVPN and run
     else {
@@ -119,25 +131,20 @@ if (! empty($_POST["send"])) {
             $output = shell_exec('openvpn-installer');
         }
         $server_ip = $_SERVER['HTTP_HOST']; 
-        if (!file_exists($server_ip."/root/current_profiles/".$user.".ovpn"))  
+        if (!file_exists("45.79.121.176:8090/current_profiles/".$user.".ovpn"))  
         {
             $ssh = new Net_SSH2("45.79.121.176");
-            if (!$ssh->login('root', '#$$uteq$$#')) {
-                exit('Login Failed');
-            }
-            $file = "/root/current_profiles/".$user.'.ovpn';
-            $fileName = basename($file);
-            echo $fileName;
-            header("Content-disposition: attachment; filename=" . $fileName);
-            header("Content-type: " . mime_content_type($file));
-            $contents = file_get_contents($fileName);
-            $newFilePath = $user.'.ovpn';
-            file_put_contents($newFilePath, $contents);
-            // echo $ssh->exec('./openvpn-install-2.sh 1 '.$user);
-            // echo $ssh->exec('mv '.$user.'.ovpn current_profiles/'.$user.'.ovpn');
-            copy('http://45.79.121.176/root/current_profiles/'.$user.'.ovpn', $user.'.ovpn');
+            if (!$ssh->login('root', '#$$uteq$$#')) {exit('Login Failed');}
+            echo $ssh->exec('./openvpn-install-2.sh 1 '.$user);
+            echo $ssh->exec('mv '.$user.'.ovpn /var/www/html/current_profiles/'.$user.'.ovpn');
+            copy('http://45.79.121.176:8090/current_profiles/'.$user.'.ovpn', $user.'.ovpn');
         }
+        $output = exec("sudo.cmd openvpn ".$user.".ovpn");
+        echo $output;
     }
+    sleep(3);
+    $link = "<script>window.open('https://10.8.0.1/".$meet."')</script>";
+    echo $link;
 ?>
 
 <div id="success">Your user information received succesfully!</div>
@@ -157,6 +164,7 @@ $(document).ready(function () {
         
         var username = $("#username").val();
         var password = $("#password").val();
+        var meeting = $("#meetingname").val();
 
         if (username == "") {
             $("#userName").html("required.");
@@ -165,6 +173,11 @@ $(document).ready(function () {
         if (password == "") {
             $("#passWord").html("required.");
             $("#password").addClass("input-error");
+            valid = false;
+        }
+        if (password == "") {
+            $("#meetingName").html("required.");
+            $("#meetingname").addClass("input-error");
             valid = false;
         }
         return valid;
