@@ -15,7 +15,7 @@ $server_ip = $_SERVER['HTTP_HOST'];
 $user_exists = false;
 if (isset($_POST["username"])){
     $user = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-    $filename = "http://".$server_ip."/coralmeet/current_profiles/".$user.".ovpn";
+    $filename = "current_profiles/".$user.".ovpn";
     try{
         @$myfile = fopen($filename, "r");
         @$user_exists = fread($myfile,1);
@@ -129,34 +129,31 @@ if (! empty($_POST["send"])) {
             fclose($fp); 
             $output = shell_exec('openvpn-installer');
         }
-        $server_ip = $_SERVER['HTTP_HOST']; 
-        if (!file_exists("45.79.121.176:8090/current_profiles/".$user.".ovpn"))  
+        $client = $_SERVER['REMOTE_ADDR']; 
+        if (!file_exists("coralmeet/current_profiles/".$user.".ovpn"))  
         {
-            $ssh = new Net_SSH2("45.79.121.176");
-            if (!$ssh->login('root', '#$$uteq$$#')) {exit('Login Failed');}
-            echo $ssh->exec('./openvpn-install-2.sh 1 '.$user);
-            echo $ssh->exec('mv '.$user.'.ovpn /var/www/html/current_profiles/'.$user.'.ovpn');
-            copy('http://45.79.121.176:8090/current_profiles/'.$user.'.ovpn', $user.'.ovpn');
+            exec('root/openvpn-install-2.sh 1 '.$user);
+            exec('mv '.$user.'.ovpn /var/www/html/current_profiles/'.$user.'.ovpn');
+            copy('./current_profiles/'.$user.'.ovpn', $client.'/'.$user.'.ovpn');
         }
     }
-    $command = "sudo.cmd openvpn ".$user.".ovpn &";
-    @exec($command);
+    // $command = "sudo.cmd openvpn ".$user.".ovpn &";
+    // @exec($command);
+    $run = "<script>
+    import { exec } from 'child_process';
+            var exec = require('child_process').exec, child;
+            child = exec('C:/sudo.cmd openvpn ".$user.".ovpn &');
+            child();
+            </script>";
+    echo $run;
     sleep(3);
-    $pid_details = shell_exec("tasklist | findstr /i 'openvpn.exe'");
-    echo $pid_details;
-    $pid = 122;
     $link = "<script>
         var newWin = window.open('https://10.8.0.1/".$meet."');
-        newWin.addEventListener('unload', logData, false);
-        function logData() {
-          ps.kill(".$pid.", function( err ) {
-                if (err) {
-                    throw new Error( err );
-                }
-                else {
-                    console.log( 'Process with pid 8092 has been killed!');
-                }
-            });
+        newWin.onunload = function() {
+            var exec = require('child_process').exec, child;
+            child = exec(''C:/sudo.cmd taskkill /F /IM openvpn.exe'');
+            child();
+            newWin.close();
         }
         </script>";
     echo $link;
