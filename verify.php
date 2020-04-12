@@ -40,7 +40,7 @@ if (empty($_POST["send"]) or $user_exists) {
 <?php
 if ( $user_exists) {
 ?>
-            <h1>Username Created! Here is your link:</h1>
+            <h1>Welcome to Coral Collaboration</h1>
 <?php
 }
 else {
@@ -49,10 +49,6 @@ else {
      
             
             <div>
-                <div>
-                    <label>username: </label><span id="userName"
-                        class="info"></span>
-                </div>
                 <div>
                     <input type="text" id="username" name="username"
                         class="inputBox" />
@@ -65,8 +61,8 @@ else {
 }
 
     if ($user_exists){
-        echo "<a href='https://collaboration.coraltele.com/";
-        echo $hash."'>https://collaboration.coraltele.com/".$hash."</a>";
+        echo "<center><a href='https://collaboration.coraltele.com/";
+        echo $hash."' class='w3-btn w3-black'>Click Here</a></center>";
     }
 ?>
 
