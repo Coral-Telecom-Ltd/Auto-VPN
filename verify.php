@@ -17,7 +17,7 @@ if (isset($_POST["username"])){
     $filename = fopen("profiles.txt","r");
     while(! feof($filename))  {
         $result = fgets($filename);
-        $result = substr($result,0,strlen($result)-2);
+        $result = substr($result,0,strlen($result)-1);
         if (strcmp($result, $user) == 0){
             $user_exists = true;
         }
@@ -28,7 +28,7 @@ if (isset($_POST["username"])){
 if (empty($_POST["send"]) or $user_exists) {
     if ($user_exists){
         $hash = hash('ripemd160', $user);
-        $hash = substr($hash,0,6);
+        $hash = substr($hash,0,9);
     }
     
 ?>
