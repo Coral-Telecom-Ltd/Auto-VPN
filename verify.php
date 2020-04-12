@@ -41,6 +41,7 @@ if (empty($_POST["send"]) or $user_exists) {
 if ( $user_exists) {
 ?>
             <h1>Welcome to Coral Collaboration</h1>
+            <h2>This link is valid for today only</h2>
 <?php
 }
 else {
