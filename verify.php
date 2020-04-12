@@ -7,6 +7,8 @@
 </head>
 <body>
     <!--Contact Form-->
+<div stype='background-image: url("youtube-banner.png");'>
+
 <?php
 // Check if user exists
 $user_exists = false;
@@ -33,7 +35,7 @@ if (empty($_POST["send"]) or $user_exists) {
     <div id="contact-popup">
         <form class="contact-form" action="" id="contact-form"
             method="post" enctype="multipart/form-data">
-            
+            <div class="watermark"></div>
 <?php
 if ( $user_exists) {
 ?>
@@ -97,3 +99,5 @@ $(document).ready(function () {
     });
 });
 </script>
+
+

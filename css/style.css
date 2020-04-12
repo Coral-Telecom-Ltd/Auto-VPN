@@ -1,7 +1,7 @@
 body {
-    color: #232323;
+    background-image: url('../youtube-banner.png');
     font-size: 0.95em;    
-    font-family: arial;
+    font-family: Myriad Pro;
 }
 
 div#success {
@@ -45,6 +45,8 @@ div#success {
     margin-top: -255px;
     box-shadow: 1px 1px 5px #444444;
     padding: 20px 40px 40px 40px;
+    background-image: linear-gradient(-90deg, hsl(212, 4%, 8%) 0, #212224 50%, #757c86 100%);
+    color: white;
 }
 
 #contact-icon {
@@ -81,4 +83,16 @@ div#success {
 
 .input-error {
     border: #e66262 1px solid;
+}
+
+.watermark {
+    position: relative;
+    width: 200px;
+    height: 125px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    left: 20%;
+    background-image: url(../watermark.png);
+    background-position: center left;
 }
