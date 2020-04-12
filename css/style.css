@@ -1,5 +1,6 @@
 body {
     background-image: url('../youtube-banner.png');
+    background-size: cover;
     font-size: 0.95em;    
     font-family: Myriad Pro;
 }
