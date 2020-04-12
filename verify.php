@@ -45,7 +45,7 @@ if ( $user_exists) {
 }
 else {
 ?>
-            <h1>Please enter valid username:</h1>
+            <h1>Please enter valid password:</h1>
      
             
             <div>
@@ -62,7 +62,7 @@ else {
 
     if ($user_exists){
         echo "<center><a href='https://collaboration.coraltele.com/";
-        echo $hash."' class='w3-btn w3-black'>Click Here</a></center>";
+        echo $hash."' class='w3-btn w3-black'>https://collaboration.coraltele.com/".$hash."</a></center>";
     }
 ?>
 
