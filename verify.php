@@ -28,7 +28,7 @@ if (isset($_POST["username"])){
 if (empty($_POST["send"]) or $user_exists) {
     if ($user_exists){
         $hash = hash('ripemd160', $user.date('ljFY'));
-        $hash = substr($hash,0,6);
+        $hash = substr($hash,0,12);
     }
     
 ?>
