@@ -17,7 +17,8 @@ if (isset($_POST["username"])){
     $filename = fopen("profiles.txt","r");
     while(! feof($filename))  {
         $result = fgets($filename);
-        if (strpos($result, $user) !== false){
+        $result = substr($result,0,strlen($result)-2);
+        if (strcmp($result, $user) == 0){
             $user_exists = true;
         }
     }
