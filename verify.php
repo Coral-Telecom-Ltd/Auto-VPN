@@ -18,7 +18,7 @@ if (isset($_POST["username"])){
     while(! feof($filename))  {
         $result = fgets($filename);
         $result = substr($result,0,strlen($result)-1);
-        if (strcmp($result, $user) == 0){
+        if (strlen($result) > 1 and strcmp($result, $user) == 0){
             $user_exists = true;
         }
     }
