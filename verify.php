@@ -27,8 +27,8 @@ if (isset($_POST["username"])){
 // If not got user info or user exists, ask for username and system password
 if (empty($_POST["send"]) or $user_exists) {
     if ($user_exists){
-        $hash = hash('ripemd160', $user);
-        $hash = substr($hash,0,9);
+        $hash = hash('ripemd160', $user.date('ljFY'));
+        $hash = substr($hash,0);
     }
     
 ?>
