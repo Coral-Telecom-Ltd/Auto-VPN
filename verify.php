@@ -25,7 +25,7 @@ if (isset($_POST["username"])){
 }
 
 // If not got user info or user exists, ask for username and system password
-if (empty($_POST["send"]) or $user_exists) {
+if (empty($_POST["send"]) or $user_exists or (!empty($_POST["send"]) and strlen($_POST["username"]) == 0)) {
     if ($user_exists){
         $hash = hash('ripemd160', $user.date('ljFY'));
         $hash = substr($hash,0,12);
@@ -73,7 +73,10 @@ else {
 <?php
 }
 
-if (!empty($_POST["send"])and !$user_exists) {
+if (!empty($_POST["send"]) and strlen($_POST["username"]) == 0){
+    echo "Username can not be empty.";
+}
+elseif (!empty($_POST["send"])and !$user_exists) {
     echo "Username not registered! Please contact Coral Telecom.";
 }
 ?>
