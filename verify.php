@@ -39,9 +39,11 @@ if (empty($_POST["send"]) or $user_exists or (!empty($_POST["send"]) and strlen(
             <div class="watermark"></div>
 <?php
 if ( $user_exists) {
-?>
+?>      
+            <center>
             <h2>Welcome to your collaboration room! Valid for one day and enjoy the new experience.</h2>
             <h3>Click on the link below to enter. Copy & share the link with others who you want to invite. </h3>
+            </center>
 <?php
 }
 else {
