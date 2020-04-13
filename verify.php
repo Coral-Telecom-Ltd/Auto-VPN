@@ -9,6 +9,16 @@
     <!--Contact Form-->
 <div stype='background-image: url("youtube-banner.png");'>
 
+<script>
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+</script>
+
 <?php
 // Check if user exists
 $user_exists = false;
@@ -65,7 +75,9 @@ else {
 
     if ($user_exists){
         echo "<center><a href='https://collaboration.coraltele.com/";
-        echo $hash."' class='w3-btn w3-black'>https://collaboration.coraltele.com/".$hash."</a></center>";
+        echo $hash."' class='w3-btn w3-black'>https://collaboration.coraltele.com/".$hash."</a></center><br>";
+        echo "<a class='cls_copy_pg_action copyAction copy-action-btn' data-value='https://collaboration.coraltele.com/".$hash."'> <i class='far fa-copy'></i><center> <img alt='copy' src='copy.png'
+         width=15' height='15'> </center></a>";
     }
 ?>
 
@@ -101,6 +113,18 @@ $(document).ready(function () {
         return valid;
     });
 });
+$(document).on("click", ".copy-action-btn", function() { 
+      var trigger = $(this);
+      $(".copy-action-btn").removeClass("text-success");
+      var $tempElement = $("<input>");
+        $("body").append($tempElement);
+        var copyType = $(this).data("value");
+        $tempElement.val(copyType).select();
+        document.execCommand("Copy");
+        $tempElement.remove();
+        $(trigger).addClass("text-success");
+
+  });
 </script>
 
 
