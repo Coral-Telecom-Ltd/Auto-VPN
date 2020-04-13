@@ -52,7 +52,7 @@ else {
             <div>
                 <div>
                     <input type="text" id="username" name="username"
-                        class="inputBox" />
+                        class="password" />
                 </div>
             </div>
             <div>
