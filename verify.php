@@ -46,7 +46,7 @@ if ( $user_exists) {
 }
 else {
 ?>
-            <h1>Please enter valid password:</h1>
+            <h1>Please enter your assigned username:</h1>
      
             
             <div>
