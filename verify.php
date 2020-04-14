@@ -51,8 +51,8 @@ if (empty($_POST["send"]) or $user_exists or (!empty($_POST["send"]) and strlen(
 if ( $user_exists) {
 ?>      
             <center>
-            <h2>Welcome to your collaboration room! Valid for one day and enjoy the new experience.</h2>
-            <h3>Click on the link below to enter. Copy & share the link with others who you want to invite. </h3>
+            <h3>Welcome to your collaboration room! Valid for one day and enjoy the new experience.</h3>
+            Click on the link below to enter. Copy & share the link with others who you want to invite.
             </center>
 <?php
 }
@@ -79,7 +79,9 @@ else {
         echo "<a class='cls_copy_pg_action copyAction copy-action-btn' data-value='https://collaboration.coraltele.com/".$hash."'> <i class='far fa-copy'></i><center> Copy URL <img alt='copy' src='copy.png'
          width=15' height='15'> </center></a><br>";
          echo "<center><font size='1'>This solution has been developed using open-sources platforms including FreeSwitch, OpenVPN, GoogleCloudAI, Jitsi and OpenSwan</font></center><br>";
-         echo "<center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
+    }
+    else{
+        echo "<center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
     }
 ?>
 
