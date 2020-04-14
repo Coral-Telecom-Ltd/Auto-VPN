@@ -81,7 +81,7 @@ else {
          echo "<center><font size='1'>This solution has been developed using open-sources platforms including FreeSwitch, OpenVPN, GoogleCloudAI, Jitsi and OpenSwan</font></center><br>";
     }
     else{
-        echo "<center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
+        echo "<br><center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
     }
 ?>
 
