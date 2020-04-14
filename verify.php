@@ -78,7 +78,7 @@ else {
         echo $hash."' class='w3-btn w3-black'>https://collaboration.coraltele.com/".$hash."</a></center><br>";
         echo "<a class='cls_copy_pg_action copyAction copy-action-btn' data-value='https://collaboration.coraltele.com/".$hash."'> <i class='far fa-copy'></i><center> Copy URL <img alt='copy' src='copy.png'
          width=15' height='15'> </center></a><br>";
-         echo "<center><font size='1'>This solution has been developed using open-sources platforms including FreeSwitch, OpenVPN, GoogleCloudAI, Jitsi and OpenSwan</font></center>";
+         echo "<center><font size='1'>This solution has been developed using open-sources platforms including FreeSwitch, OpenVPN, GoogleCloudAI, Jitsi and OpenSwan</font></center><br>";
          echo "<center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
     }
 ?>
