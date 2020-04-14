@@ -52,7 +52,7 @@ if ( $user_exists) {
 ?>      
             <center>
             <h3>Welcome to your collaboration room!</h3>
-            Click on the link below to enter. Copy & share the link with others who you want to invite.
+            <font size='3'>Click on the link below to enter. Copy & share the link with others who you want to invite.</font>
             </center>
 <?php
 }
@@ -74,7 +74,7 @@ else {
 }
 
     if ($user_exists){
-        echo "<center><a href='https://collaboration.coraltele.com/";
+        echo "<br><center><a href='https://collaboration.coraltele.com/";
         echo $hash."' class='w3-btn w3-black'>https://collaboration.coraltele.com/".$hash."</a></center><br>";
         echo "<a class='cls_copy_pg_action copyAction copy-action-btn' data-value='https://collaboration.coraltele.com/".$hash."'> <i class='far fa-copy'></i><center> Copy URL <img alt='copy' src='copy.png'
          width=15' height='15'> </center></a><br>";
