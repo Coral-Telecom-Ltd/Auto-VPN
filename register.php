@@ -20,8 +20,10 @@ function copyToClipboard(element) {
 </script>
 
 <?php
+
+$serverIP = $_SERVER['HTTP_HOST'];
 // Check if user exists
-$user_exists = false;
+$user_exists = true;
 if (isset($_POST["username"])){
     $user = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $filename = fopen("profiles.txt","r");
@@ -36,11 +38,7 @@ if (isset($_POST["username"])){
 
 // If not got user info or user exists, ask for username and system password
 if (empty($_POST["send"]) or $user_exists or (!empty($_POST["send"]) and strlen($_POST["username"]) == 0)) {
-    if ($user_exists){
-        $hash = hash('ripemd160', $user.date('ljFY'));
-        $hash = substr($hash,0,12);
-    }
-    
+  
 ?>
 
     <div id="contact-popup">
@@ -52,33 +50,53 @@ if ( $user_exists) {
 ?>      
             <center>
             <h3>Welcome to your collaboration room!</h3>
-            <font size='3'>Click on the link below to enter. Copy & share the link with others who you want to invite.</font>
+            <font size='3'>Please check email or click the link below to login:</font>
             </center>
 <?php
 }
 else {
 ?>
-            <h1>Please enter assigned user name:</h1>
+            <h1>Please enter credentials</h1>
      
             
             <div>
+                <div>
+                    <label>email: </label><span id="email"
+                        class="info"></span>
+                </div>
+                <div>
+                    <input type="text" id="email" name="email"
+                        class="inputBox" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label>username: </label><span id="userName"
+                        class="info"></span>
+                </div>
                 <div>
                     <input type="text" id="username" name="username"
                         class="inputBox" />
                 </div>
             </div>
             <div>
-                <input type="submit" id="send" name="send" value="Generate Link"/>
+                <div>
+                    <label>password of the system: </label><span id="passWord"
+                        class="password"></span>
+                </div>
+                <div>
+                    <input type="password" id="password" name="password"
+                        class="inputBox" />
+                </div>
+            </div>
+            <div>
+                <input type="submit" id="send" name="send" value="Verify Email ID"/>
             </div>
 <?php
 }
-
     if ($user_exists){
-        echo "<br><center><a href='https://collaboration.coraltele.com/";
-        echo $hash."' class='w3-btn w3-black'>https://collaboration.coraltele.com/".$hash."</a></center><br>";
-        echo "<a class='cls_copy_pg_action copyAction copy-action-btn' data-value='https://collaboration.coraltele.com/".$hash."'> <i class='far fa-copy'></i><center><font size='2'> Copy URL </font><img alt='copy' src='copy.png'
-         width=15' height='15'> </center></a><br>";
-         echo "<center><font size='1'>This solution has been developed using open-sources platforms including FreeSwitch, OpenVPN, GoogleCloudAI, Jitsi and OpenSwan</font></center><br>";
+        echo "<br><center><a href='https://".$serverIP."/coralmeet/verify.php";
+        echo "' class='w3-btn w3-black'>Click Here</a></center><br>";
     }
     else{
         echo "<br><center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
@@ -109,11 +127,24 @@ $(document).ready(function () {
         $("inputBox").removeClass("input-error");
         
         var username = $("#username").val();
+        var password = $("#password").val();
+        var email = $("#email").val();
 
         if (username == "") {
             $("#userName").html("required.");
             $("#username").addClass("input-error");
         }
+        if (password == "") {
+            $("#passWord").html("required.");
+            $("#password").addClass("input-error");
+            valid = false;
+        }
+        if (email == "") {
+            $("#email").html("required.");
+            $("#email").addClass("input-error");
+            valid = false;
+        }
+        re
         return valid;
     });
 });
