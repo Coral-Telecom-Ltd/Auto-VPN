@@ -23,7 +23,7 @@ function copyToClipboard(element) {
 
 $serverIP = $_SERVER['HTTP_HOST'];
 // Check if user exists
-$user_exists = true;
+$user_exists = false;
 if (isset($_POST["username"])){
     $user = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $filename = fopen("profiles.txt","r");
