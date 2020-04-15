@@ -81,7 +81,7 @@ else {
             </div>
             <div>
                 <div>
-                    <label>password of the system: </label><span id="passWord"
+                    <label>password: </label><span id="passWord"
                         class="password"></span>
                 </div>
                 <div>
