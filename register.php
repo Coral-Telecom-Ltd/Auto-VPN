@@ -82,7 +82,6 @@ else {
     }
     else{
         echo "<br><center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
-        echo "<br><center><font size='2'>Not yet registered?  <a href='https://collaboration.coraltele.com/coralmeet/register.php'>Click Here</a></font></center>";
     }
 ?>
 
@@ -92,9 +91,6 @@ else {
 <?php
 }
 
-$host= gethostname();
-$ip = gethostbyname($host);
-echo $host."  ".$ip;
 if (!empty($_POST["send"]) and strlen($_POST["username"]) == 0){
     echo "Username can not be empty.";
 }
