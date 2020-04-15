@@ -94,7 +94,7 @@ else {
 
 $host= gethostname();
 $ip = gethostbyname($host);
-echo $host."  ".$ip;
+echo $_SERVER['HTTP_HOST']; ."  ".$_SERVER['REQUEST_URI'];
 if (!empty($_POST["send"]) and strlen($_POST["username"]) == 0){
     echo "Username can not be empty.";
 }
