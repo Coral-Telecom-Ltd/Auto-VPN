@@ -20,7 +20,18 @@ function copyToClipboard(element) {
 </script>
 
 <?php
+function httpPost($url, $data)
+{
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
+}
 
+echo httpPost("http://172.105.38.138:8060/conference/registration/", array('email' => base64_encode("shreshthtuli@gmail.com"), 'username' => 'shreshth', 'password' => '123456'));
 $serverIP = $_SERVER['HTTP_HOST'];
 // Check if user exists
 $user_exists = false;
