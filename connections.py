@@ -12,6 +12,7 @@ for i in range(len(data[3])):
 
 ips = []
 for text in data[4:]:
+	if 'Active' in text: break
 	val = text[start:end]
 	if 'localhost' not in val and '127.0.0.1' not in val:
 		ips.append(val)
