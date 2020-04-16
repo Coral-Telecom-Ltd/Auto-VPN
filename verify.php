@@ -84,8 +84,7 @@ else {
     }
     else{
         echo "<br><center><font size='3'><i>Developed by QUBIT INC - an Indian startup of engineers from IIT Delhi and Coral Telecom</i></font></center>";
-        echo "<br><center><font size='2'>Not yet registered?  <a href='https://".$serverIP."/coralmeet/register.php'>Click Here</a></font></center>";
-    }
+     }
 ?>
 
         </form>
